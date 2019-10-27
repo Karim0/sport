@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 
 
@@ -8,6 +9,7 @@ class SportSection(models.Model):
     name = models.TextField()
     info = models.TextField()
     price = models.IntegerField()
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/sport_app/templates/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}, price = {2}".format(self.name, self.info, self.price)
@@ -20,12 +22,12 @@ class Location(models.Model):
 
     def __str__(self):
         return "location = {0}, map_location = {1}, section_id = {2}".format(self.location, self.map_location,
-                                                                             '''self.section_id''')
+                                                                             self.section_id)
 
 
 class Rating(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
-    section_id = models.ForeignKey(SportSection, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    section = models.ForeignKey(SportSection, on_delete=models.CASCADE)
     rating = models.IntegerField()
 
     def __str__(self):
@@ -33,7 +35,7 @@ class Rating(models.Model):
 
 
 class Review(models.Model):
-    section_id = models.ForeignKey(SportSection, on_delete=models.PROTECT)
+    section_id = models.ForeignKey(SportSection, on_delete=models.CASCADE)
     review = models.TextField()
 
     def __str__(self):

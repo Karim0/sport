@@ -1,0 +1,12 @@
+#reg{
+	margin-top: 50px;
+}
+#login_button{
+	border-color: #2D8F03;
+	background-color: #2D8F03;
+}
+#login_button:hover{
+	border-color: #2D8F03;
+	background-color: white;
+	color: #2D8F03;
+}
