@@ -9,7 +9,7 @@ class SportSection(models.Model):
     name = models.TextField()
     info = models.TextField()
     price = models.IntegerField()
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/sport_app/templates/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/static/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}, price = {2}".format(self.name, self.info, self.price)

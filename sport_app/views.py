@@ -1,17 +1,20 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
+from .models import SportSection, Location
 
 
 def index(request):
-    if request.user.is_authenticated:
-        ctx = {"name": "123"}
-        return render(request, 'index.html', ctx)
-    else:
-        return render(request, 'index.html', {})
+    # if request.user.is_authenticated:
+    #     ctx = {"name": "123"}
+    #     return render(request, 'index.html', ctx)
+    # else:
+    o = get_list_or_404(SportSection.objects)
+
+    return render(request, 'index.html', {"sport_section": o})
 
 
 def test(request):
