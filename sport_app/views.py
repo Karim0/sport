@@ -4,6 +4,8 @@ from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
+from rest_framework.decorators import api_view
+
 from .models import SportSection, Location
 
 
