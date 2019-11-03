@@ -5,8 +5,21 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class Coach:
+class Coach(models.Model):
     name = models.TextField()
+    info = models.TextField()
+    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/static/img', blank=True)
+
+    def __str__(self):
+        return "name = {0}, info = {1}".format(self.name, self.info)
+
+
+class ReviewToCoach(models.Model):
+    coach_id = models.ForeignKey(Coach, on_delete=models.CASCADE)
+    review_text = models.TextField()
+
+    def __str__(self):
+        return "coach_id = {0}, review_text = {1}".format(self.coach_id, self.review_text)
 
 
 class SportSection(models.Model):

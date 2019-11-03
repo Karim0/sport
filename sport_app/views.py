@@ -4,7 +4,7 @@ from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
-from .models import SportSection, Location
+from .models import SportSection, Coach, Location
 from django.http import Http404, HttpResponseRedirect
 
 
@@ -25,6 +25,11 @@ def detail(request, article_id):
         raise Http404('The article is not found')
 
     return render(request, 'detail.html', {'article': a})
+
+
+def coachView(request):
+    o = get_list_or_404(Coach.objects)
+    return render(request, 'coaches.html', {"coach": o})
 
 def test(request):
     return HttpResponse("Hello test")
