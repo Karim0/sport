@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
 from .models import SportSection, Location
+from django.http import Http404, HttpResponseRedirect
 
 
 def index(request):
@@ -16,6 +17,14 @@ def index(request):
 
     return render(request, 'index.html', {"sport_section": o})
 
+
+def detail(request, article_id):
+    try:
+        a = SportSection.objects.get(id = article_id)
+    except:
+        raise Http404('The article is not found')
+
+    return render(request, 'detail.html', {'article': a})
 
 def test(request):
     return HttpResponse("Hello test")

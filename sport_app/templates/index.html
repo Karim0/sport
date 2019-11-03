@@ -28,7 +28,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'sport_app:index' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">GYMs list</a>
@@ -59,7 +59,7 @@
             <div class="col-4 mh-99">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="center">{{ i.name }}</h3>
+                        <h3 class="center"><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></h3>
                     </div>
                     <div class="row">
                         <div class="container"><img src="../static/img/{{ i.img.name }}" alt="" class="card-img-top"

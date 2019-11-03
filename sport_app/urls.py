@@ -17,8 +17,10 @@ Including another URLconf
 from django.urls import path
 from . import views
 
+app_name = 'sport_app'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('<int:article_id>/', views.detail, name='detail'),
     path('registration', views.RegistrationView.as_view(), name='registration'),
     path('login', views.LoginView.as_view(), name='login'),
     path('test', views.test, name='test'),
