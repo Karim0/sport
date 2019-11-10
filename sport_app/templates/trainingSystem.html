@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ewkere</title>
+</head>
+<body>
+    {% for i in system %}
+        <h1>{{ i.name }}</h1>
+        <p>{{ i.info }}</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/mg0IomqMzyw"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+                gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {% endfor %}
+</body>
+</html>

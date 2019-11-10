@@ -44,9 +44,6 @@
                     <a class="dropdown-item" href="registration">Sign Up</a>
                 </div>
             </li>
-                        <li class="nav-item">
-                <a class="nav-link" href="{% url 'sport_app:coachView' %}">Coaches list</a>
-            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -58,7 +55,7 @@
     <br>
     <br>
     <div class="row">
-        {% for i in sport_section %}
+        {% for i in coach %}
             <div class="col-4 mh-99">
                 <div class="card">
                     <div class="card-header">
@@ -73,34 +70,3 @@
             </div>
         {% endfor %}
     </div>
-
-    <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
-        <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
-        <script>(function () {
-            var setting = {
-                "height": 536,
-                "width": 803,
-                "zoom": 12,
-                "queryString": "Алматы, Казахстан",
-                "place_id": "ChIJq8vFFn1ugzgRdm2YrY9mRD0",
-                "satellite": false,
-                "centerCoord": [43.222188984554116, 76.86483551420274],
-                "cid": "0x3d44668fad986d76",
-                "cityUrl": "/kazakhstan/abay-280276",
-                "id": "map-9cd199b9cc5410cd3b1ad21cab2e54d3",
-                "embed_id": "104947"
-            };
-            var d = document;
-            var s = d.createElement('script');
-            s.src = 'https://1map.com/js/script-for-user.js?embed_id=104947';
-            s.async = true;
-            s.onload = function (e) {
-                window.OneMap.initMap(setting)
-            };
-            var to = d.getElementsByTagName('script')[0];
-            to.parentNode.insertBefore(s, to);
-        })();</script>
-        <a href="https://1map.com/map-embed?embed_id=104947">1map.com</a></div>
-</div>
-</body>
-</html>

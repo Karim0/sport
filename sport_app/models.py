@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+class TrainingSystem(models.Model):
+    name = models.TextField()
+    info = models.TextField()
+
+    def __str__(self):
+        return "name = {0}, info = {1}".format(self.name, self.info)
 
 
 class Coach(models.Model):
