@@ -23,6 +23,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('docs/', schema_view),
     path('', include('sport_app.urls')),
-    path('api/', include('api_doc.urls')),
     path('accounts/', include('rest_framework.urls')),
+
+    #     Api doc
+    path('sport_section/', include('api_doc.urls.sport_section')),
+    path('comment/', include('api_doc.urls.comment')),
+    path('raiting/', include('api_doc.urls.raiting')),
+    path('location/', include('api_doc.urls.location')),
+    path('coach/', include('api_doc.urls.coach')),
 ]
