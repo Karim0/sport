@@ -4,9 +4,8 @@ from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
-from rest_framework.decorators import api_view
-
-from .models import SportSection, Location
+from .models import SportSection, Coach, TrainingSystem, Location
+from django.http import Http404, HttpResponseRedirect
 
 
 def index(request):
@@ -17,6 +16,25 @@ def index(request):
     o = get_list_or_404(SportSection.objects)
 
     return render(request, 'index.html', {"sport_section": o})
+
+
+def detail(request, article_id):
+    try:
+        a = SportSection.objects.get(id = article_id)
+    except:
+        raise Http404('The article is not found')
+
+    return render(request, 'detail.html', {'article': a})
+
+
+def trainingSystemView(request):
+    o = get_list_or_404(TrainingSystem.objects)
+    return render(request, 'trainingSystem.html', {"system": o})
+
+
+def coachView(request):
+    o = get_list_or_404(Coach.objects)
+    return render(request, 'coach.html', {"coach": o})   # создай страницу coaches.html
 
 
 def test(request):
@@ -46,18 +64,7 @@ class LoginView(FormView):
     def form_valid(self, form):
         authenticate(self.request)
         login(self.request, form.get_user())
-        # If the test cookie worked, go ahead and
-        # delete it since its no longer needed
-        # if self.request.session.test_cookie_worked():
-        #     self.request.session.delete_test_cookie()
         return super(LoginView, self).form_valid(form)
-
-    # def get_success_url(self):
-    #     import ipdb; ipdb.set_trace()
-    #     redirect_to = self.request.GET.get(self.redirect_field_name)
-    #     if not is_safe_url(url=redirect_to, host=self.request.get_host()):
-    #         redirect_to = self.success_url
-    #     return redirect_to
 
 
 def logout1(request):

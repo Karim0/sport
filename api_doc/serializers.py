@@ -32,7 +32,13 @@ class SerializerCoach(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class SerializerReviewToCoach(serializers.ModelSerializer):
+class SerializerTypeComment(serializers.ModelSerializer):
     class Meta:
-        model = ReviewToCoach
+        model = TypeComment
         fields = '__all__'
+
+#
+# class SerializerReviewToCoach(serializers.ModelSerializer):
+#     class Meta:
+#         model = ReviewToCoach
+#         fields = '__all__'

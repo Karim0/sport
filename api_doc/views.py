@@ -67,9 +67,27 @@ def getAllComment(request):
 
 @api_view(['GET'])
 @schema(CommentSchema())
-def getCommentById(request, pk):
+def getAllCommentByType(request, typeComment):
     """show All Comment By SportSectionId"""
-    items = Comment.objects.filter(section_id=pk)
+    items = Comment.objects.filter(typeComment_id=typeComment)
+    serializer = SerializerComment(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@schema(CommentSchema())
+def getAllCommentByTypeAndIdCon(request, typeComment, con_id):
+    """show All Comment By SportSectionId"""
+    items = Comment.objects.filter(typeComment_id=typeComment, conn_id=con_id)
+    serializer = SerializerComment(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@schema(CommentSchema())
+def getCommentById(request, pk):
+    """show All Comment By Id"""
+    items = Comment.objects.filter(id=pk)
     serializer = SerializerComment(items, many=True)
     return Response(serializer.data)
 
@@ -184,9 +202,10 @@ def updateLocation(request, pk):
 @api_view(['GET'])
 def getCommentToCoachById(request, pk):
     """show All Review By CoachId"""
-    items = ReviewToCoach.objects.filter(section_id=pk)
-    serializer = SerializerReviewToCoach(items, many=True)
-    return Response(serializer.data)
+    # items = ReviewToCoach.objects.filter(section_id=pk)
+    # serializer = SerializerReviewToCoach(items, many=True)
+    # return Response(serializer.data)
+    pass
 
 
 @api_view(['GET'])
@@ -208,9 +227,10 @@ def getCoachesBySectionId(request, pk):
 @api_view(['GET'])
 def getCommentByCoachId(request, pk):
     """show All Coach"""
-    items = Coach.objects.filter(id=pk)
+    items = Comment.objects.filter(conn_id=pk, typeComment__name="Coach")
     serializer = SerializerCoach(items, many=True)
     return Response(serializer.data)
+
 
 #
 # @api_view(['POST'])

@@ -23,4 +23,10 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     # path('logout', views.logout1, name='logout')
     # path('login', views.LoginView.as_view(), name='login'),
+    path('', views.index, name='index'),
+    path('<int:article_id>/', views.detail, name='detail'),
+    path('login', views.LoginView.as_view(), name='login'),
+    path('logout', views.logout1, name='logout'),
+    path('coaches', views.coachView, name='coachView'),
+    path('training_systems', views.trainingSystemView, name='systems')
 ]

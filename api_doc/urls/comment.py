@@ -7,4 +7,7 @@ urlpatterns = [
     path("updateComment/<int:pk>", views.updateComment),
     path("deleteComment/<int:pk>", views.deleteComment),
     path("addComment", views.addComment),
+    # path("addCommentToCoach/", views.addCommentToCoach),
+    # path("updateCommentToCoach/<int:pk>", views.updateCommentToCoach),
+    # path("deleteCommentToCoach/<int:pk>", views.deleteCommentToCoach),
 ]
