@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -11,62 +9,106 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<link rel="stylesheet" type="text/css" href="../../static/css/index.css">
-<html lang="en">
+
+<html>
 <head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../static/css/mp.css">
     <title>Main page</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><img src="../../static/Logo.jpg" height="50"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div id="SideNav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
+        <a href="#">Main Page</a>
+        <a href="{% url 'sport_app:index'%}">GYM's list</a>
+        <a href="{% url 'sport_app:coachView' %}">Coaches</a>
+        <a href="#">Training System</a>
+    </div>
+    <script type="text/javascript">
+        /*Opening the sidenav*/
+        function openNav() {
+  document.getElementById("SideNav").style.width = "100%";
+}
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'sport_app:index' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">GYMs list</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="true">
-                    Authorization
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="login">Log In</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="registration">Sign Up</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+/* Close/hide the sidenav */
+function closeNav() {
+  document.getElementById("SideNav").style.width = "0";
+}
+    </script>
+    <div class ="header">
+        <div class="header_content">
+        <div><span style="padding-left:5px;cursor:pointer;color: #f5e218;" onclick="openNav()">&#9776;</span></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div><button class="btn" onclick="window.location='http://127.0.0.1:8000/login'">log in</button><button class="btn" style="margin-left: 15px;" onclick="window.location='http://127.0.0.1:8000/registration'">sign up</button></div>
     </div>
-</nav>
-<div class="container">
-    <br>
-    <br>
-    <div class="row">
-        {% for i in coach %}
-            <div class="col-4 mh-99">
-                <div class="card">
-                    <div class="card-header">
-                        <h3  class="center"><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></h3>
+    </div>
+    <div id="Main">
+            <div class="search_field"><input class="search_input" type="text" placeholder="Courses..."><button class="btn"><img src="../../static/img/search.png" style="padding-bottom: 5px;"></button></div>
+            <div class="row">
+                {% for i in coach %}
+                <div class="col-3">
+                <div class="MyCard">
+                    <img src="../static/img/{{ i.img.name }}" style="width: 100%;">
+                    <div class="card_container">
+                            <h4><b><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></b></h4>
+                            <p>{{ i.info }}</p>
+                            <button class="btn" id="myBtn" style="margin-bottom: 10px;margin-left: 5px;width: 100%;">contact</button>
                     </div>
-                    <div class="row">
-                        <div class="container"><img src="../static/img/{{ i.img.name }}" alt="" class="card-img-top"
-                                                    width="80%" height="100%"></div>
-                    </div>
-                    <div class="card-body"><p class="card-text">{{ i.info }}</p></div>
                 </div>
+                </div>
+
+                {% endfor %}
             </div>
-        {% endfor %}
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Leave a feedbakc to us</h2>
     </div>
+    <div class="modal-body">
+      <input type="text" name="" placeholder="Type your feedback here">
+      <input type="text" name="" placeholder="Type here mark of the coach">
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+    <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+    </div>
+</body>
+</html>
