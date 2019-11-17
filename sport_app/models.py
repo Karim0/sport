@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from embed_video.fields import EmbedVideoField
 
 
 # Create your models here.
 class TrainingSystem(models.Model):
     name = models.TextField()
     info = models.TextField()
+    video = EmbedVideoField(blank=True,verbose_name='Video')
 
     def __str__(self):
         return "name = {0}, info = {1}".format(self.name, self.info)

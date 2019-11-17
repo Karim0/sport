@@ -1,3 +1,4 @@
+{% load embed_video_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,11 @@
     {% for i in system %}
         <h1>{{ i.name }}</h1>
         <p>{{ i.info }}</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/mg0IomqMzyw"
+        {% if system.video %}
+        <iframe width="560" height="315" src="{{ system.video}}"
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media;
                 gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
     {% endfor %}
 </body>
 </html>

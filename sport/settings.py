@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ["192.168.1.9",
 # Application definition
 
 INSTALLED_APPS = [
+    'embed_video',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

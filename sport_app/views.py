@@ -1,5 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 from django.views.generic.edit import FormView
@@ -43,7 +42,7 @@ def test(request):
 
 class RegistrationView(FormView):
     form_class = UserCreationForm
-    success_url = '/'
+    success_url = '/login'
 
     template_name = 'registration.html'
 
