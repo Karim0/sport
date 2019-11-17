@@ -294,3 +294,147 @@ def getAllSportSection(request):
     items = SportSection.objects.all()
     serializer = SerializerSportSection(items, many=True)
     return Response(serializer.data)
+
+
+# ============== TrainingSystems ==============
+@api_view(['GET'])
+def getAllTrainingSystems(request):
+    """Show all Training system"""
+    items = TrainingSystem.objects.all()
+    serializer = SerializerTrainingSystem(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getTrainingSystemsById(request, pk):
+    """Show training system By Id"""
+    items = TrainingSystem.objects.filter(id=pk)
+    serializer = SerializerTrainingSystem(items, many=True)
+    return Response(serializer.data)
+
+
+# ============== Food ==============
+@api_view(['GET'])
+def getAllFood(request):
+    items = Food.objects.all()
+    serializer = SerializerFood(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getFoodById(request, pk):
+    items = Food.objects.filter(id=pk)
+    serializer = SerializerFood(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+@schema(CommentSchema())
+def addCommentFood(request):
+    serializer = SerializerComment(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+@schema(CommentSchema())
+def updateCommentFood(request, pk):
+    item = Comment.objects.get(id=pk)
+    serializer = SerializerFood(item, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def deleteCommentFood(request, pk):
+    item = Comment.objects.get(conn_id=pk)
+    item.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# ============== Achievement ==============
+@api_view(['GET'])
+def getAllAchievement(request):
+    items = Achievement.objects.all()
+    serializer = SerializerAchievement(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getAchievementById(request, pk):
+    items = Achievement.objects.get(id=pk)
+    serializer = SerializerAchievement(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+@schema(FoodSchema())
+def addAchievement(request):
+    serializer = SerializerAchievement(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+@schema(FoodSchema())
+def updateAchievement(request, pk):
+    item = Achievement.objects.get(id=pk)
+    serializer = SerializerAchievement(item, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def deleteAchievement(request, pk):
+    item = Achievement.objects.get(id=pk)
+    item.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# ============== Reward ==============
+@api_view(['GET'])
+def getAllReward(request):
+    items = Reward.objects.all()
+    serializer = SerializerReward(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getRewardById(request, pk):
+    items = Reward.objects.get(id=pk)
+    serializer = SerializerReward(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def addReward(request):
+    serializer = SerializerReward(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def updateReward(request, pk):
+    item = Reward.objects.get(id=pk)
+    serializer = SerializerReward(item, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def deleteReward(request, pk):
+    item = Reward.objects.get(id=pk)
+    item.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)

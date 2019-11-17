@@ -31,4 +31,8 @@ urlpatterns = [
     path('raiting/', include('api_doc.urls.raiting')),
     path('location/', include('api_doc.urls.location')),
     path('coach/', include('api_doc.urls.coach')),
+    path('food/', include('api_doc.urls.food')),
+    path('achievement/', include('api_doc.urls.achievement')),
+    path('reward/', include('api_doc.urls.reward')),
+    path('training_systems/', include('api_doc.urls.training_systems')),
 ]

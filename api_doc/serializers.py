@@ -37,6 +37,30 @@ class SerializerTypeComment(serializers.ModelSerializer):
         model = TypeComment
         fields = '__all__'
 
+
+class SerializerTrainingSystem(serializers.ModelSerializer):
+    class Meta:
+        model = TrainingSystem
+        fields = '__all__'
+
+
+class SerializerFood(serializers.ModelSerializer):
+    class Meta:
+        model = Food
+        fields = '__all__'
+
+
+class SerializerAchievement(serializers.ModelSerializer):
+    class Meta:
+        model = Achievement
+        fields = '__all__'
+
+
+class SerializerReward(serializers.ModelSerializer):
+    class Meta:
+        model = Reward
+        fields = '__all__'
+
 #
 # class SerializerReviewToCoach(serializers.ModelSerializer):
 #     class Meta:
