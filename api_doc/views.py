@@ -342,7 +342,7 @@ def addCommentFood(request):
 @schema(CommentSchema())
 def updateCommentFood(request, pk):
     item = Comment.objects.get(id=pk)
-    serializer = SerializerFood(item, data=request.data)
+    serializer = SerializerComment(item, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
@@ -351,7 +351,7 @@ def updateCommentFood(request, pk):
 
 @api_view(['DELETE'])
 def deleteCommentFood(request, pk):
-    item = Comment.objects.get(conn_id=pk)
+    item = Comment.objects.get(id=pk)
     item.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
