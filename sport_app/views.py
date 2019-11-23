@@ -8,10 +8,6 @@ from django.http import Http404, HttpResponseRedirect
 
 
 def index(request):
-    # if request.user.is_authenticated:
-    #     ctx = {"name": "123"}
-    #     return render(request, 'index.html', ctx)
-    # else:
     o = get_list_or_404(SportSection.objects)
 
     return render(request, 'index.html', {"sport_section": o})
@@ -24,6 +20,18 @@ def detail(request, article_id):
         raise Http404('The article is not found')
 
     return render(request, 'detail.html', {'article': a})
+
+
+def search(request):
+    try:
+        if request.method == "POST":
+            search_request = request.POST.get("search_field")
+            if len(search_request)>0:
+                search_res = SportSection.objects.filter(name__contains=search_request) + SportSection.objects.filter(info__contains=search_request)
+            return render(request, "sport_app/index.html", {"search_res":search_res, "empty_res":"No resuslts"})
+    except:
+        return render(request, "sport_app/index.html", {"empty_res":"No results"})
+
 
 
 def trainingSystemView(request):

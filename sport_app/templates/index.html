@@ -48,9 +48,10 @@
                 <a class="nav-link" href="{% url 'sport_app:coachView' %}">Coaches list</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <form class="form-inline my-2 my-lg-0" action="{% url 'sport_app:index' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" name="search_field" value="" type="search" placeholder="Search" aria-label="Search" method="POST">
+            <input type="submit" name="Search" value="Search">
         </form>
     </div>
 </nav>
@@ -58,6 +59,11 @@
     <br>
     <br>
     <div class="row">
+        {% if search_res %}
+        {% for sport_section in search_res %}
+            <p>{{ sport_section.name }}</p>
+        {% endfor %}
+        {% else %}
         {% for i in sport_section %}
             <div class="col-4 mh-99">
                 <div class="card">
@@ -72,6 +78,7 @@
                 </div>
             </div>
         {% endfor %}
+    {% endif %}
     </div>
 
     <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">

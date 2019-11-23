@@ -7,7 +7,7 @@ from embed_video.fields import EmbedVideoField
 class TrainingSystem(models.Model):
     name = models.TextField()
     info = models.TextField()
-    video = EmbedVideoField(blank=True,verbose_name='Video')
+    video = models.TextField()
 
     def __str__(self):
         return "name = {0}, info = {1}".format(self.name, self.info)
@@ -30,7 +30,15 @@ class ReviewToCoach(models.Model):
         return "coach_id = {0}, review_text = {1}".format(self.coach_id, self.review_text)
 
 
+class SportSectionType(models.Model):
+    description = models.TextField(max_length=56)
+
+    def __str__(self):
+        return self.description
+
+
 class SportSection(models.Model):
+    type = models.ForeignKey(SportSectionType, on_delete=models.CASCADE, null=True)
     name = models.TextField()
     info = models.TextField()
     price = models.IntegerField()
