@@ -4,6 +4,30 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Coach(models.Model):
+    name = models.TextField()
+    info = models.TextField()
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/static/img', blank=True)
+
+    def __str__(self):
+        return "name = {0}, info = {1}".format(self.name, self.info)
+
+
+class TrainingSystem(models.Model):
+    name = models.TextField()
+    info = models.TextField()
+    video = models.TextField()
+
+    def __str__(self):
+        return "name = {0}, info = {1}".format(self.name, self.info)
+
+
+class SportSectionType(models.Model):
+    description = models.TextField(max_length=56)
+
+    def __str__(self):
+        return self.description
+
 
 class SportSection(models.Model):
     type = models.ForeignKey(SportSectionType, on_delete=models.CASCADE, null=True)
