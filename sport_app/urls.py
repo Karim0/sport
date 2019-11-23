@@ -17,6 +17,7 @@ Including another URLconf
 from django.urls import path
 from . import views
 
+app_name = 'sport_app'
 urlpatterns = [
     path('', views.index, name='index'),
     path('registration/', views.RegistrationView.as_view(), name='registration'),
