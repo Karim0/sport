@@ -13,103 +13,112 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../static/css/mp.css">
     <title>Main page</title>
 </head>
 <body>
-    <div id="SideNav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
-        <a href="#">Main Page</a>
-        <a href="{% url 'sport_app:index'%}">GYM's list</a>
-        <a href="{% url 'sport_app:coachView' %}">Coaches</a>
-        <a href="#">Training System</a>
-    </div>
-    <script type="text/javascript">
-        /*Opening the sidenav*/
-        function openNav() {
-  document.getElementById("SideNav").style.width = "100%";
-}
+<div id="SideNav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
+    <a href="#">Main Page</a>
+    <a href="{% url 'sport_app:index' %}">GYM's list</a>
+    <a href="{% url 'sport_app:coachView' %}">Coaches</a>
+    <a href="#">Training System</a>
+</div>
+<script type="text/javascript">
+    /*Opening the sidenav*/
+    function openNav() {
+        document.getElementById("SideNav").style.width = "100%";
+    }
 
-/* Close/hide the sidenav */
-function closeNav() {
-  document.getElementById("SideNav").style.width = "0";
-}
-    </script>
-    <div class ="header">
-        <div class="header_content">
+    /* Close/hide the sidenav */
+    function closeNav() {
+        document.getElementById("SideNav").style.width = "0";
+    }
+</script>
+<div class="header">
+    <div class="header_content">
         <div><span style="padding-left:5px;cursor:pointer;color: #f5e218;" onclick="openNav()">&#9776;</span></div>
         <div></div>
         <div></div>
         <div></div>
-        <div><button class="btn" onclick="window.location='http://127.0.0.1:8000/login'">log in</button><button class="btn" style="margin-left: 15px;" onclick="window.location='http://127.0.0.1:8000/registration'">sign up</button></div>
+        <div>
+            <button class="btn" onclick="window.location='http://127.0.0.1:8000/login'">log in</button>
+            <button class="btn" style="margin-left: 15px;"
+                    onclick="window.location='http://127.0.0.1:8000/registration'">sign up
+            </button>
+        </div>
     </div>
+</div>
+<div id="Main">
+    <div class="search_field"><input class="search_input" type="text" placeholder="Courses...">
+        <button class="btn"><img src="../../static/img/search.png" style="padding-bottom: 5px;"></button>
     </div>
-    <div id="Main">
-            <div class="search_field"><input class="search_input" type="text" placeholder="Courses..."><button class="btn"><img src="../../static/img/search.png" style="padding-bottom: 5px;"></button></div>
-            <div class="row">
-                {% for i in coach %}
-                <div class="col-3">
+    <div class="row">
+        {% for i in coach %}
+            <div class="col-3">
                 <div class="MyCard">
-                    <img src="../static/img/{{ i.img.name }}" style="width: 100%;">
+                    <img src="{{ i.img.url }}" style="width: 100%;">
                     <div class="card_container">
-                            <h4><b><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></b></h4>
-                            <p>{{ i.info }}</p>
-                            <p>Rating : 5</p>
-                            <button class="btn" id="myBtn" style="margin-bottom: 10px;margin-left: 5px;width: 100%;">contact</button>
+                        <h4><b><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></b></h4>
+                        <p>{{ i.info }}</p>
+                        <p>Rating : 5</p>
+                        <button class="btn" id="myBtn" style="margin-bottom: 10px;margin-left: 5px;width: 100%;">
+                            contact
+                        </button>
                     </div>
                 </div>
-                </div>
-
-                {% endfor %}
             </div>
 
-<div id="myModal" class="modal">
+        {% endfor %}
+    </div>
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Leave a feedbakc to us</h2>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Leave a feedbakc to us</h2>
+            </div>
+            <div class="modal-body">
+                <input type="text" name="" placeholder="Type your feedback here">
+                <input type="text" name="" placeholder="Type here mark of the coach">
+            </div>
+            <div class="modal-footer">
+                <h3>Modal Footer</h3>
+            </div>
+        </div>
+
     </div>
-    <div class="modal-body">
-      <input type="text" name="" placeholder="Type your feedback here">
-      <input type="text" name="" placeholder="Type here mark of the coach">
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </div>
-    <script>
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
-    </div>
 </body>
 </html>
