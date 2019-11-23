@@ -438,3 +438,16 @@ def deleteReward(request, pk):
     item = Reward.objects.get(id=pk)
     item.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+def buyGymMembership(request):
+    pass
+
+
+def authUser(request):
+    pass
+
+
+def addOrdeFoodDelivery(request):
+    pass

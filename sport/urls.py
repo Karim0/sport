@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 schema_view = get_swagger_view(title='API DOCUMENTATION')
 
@@ -36,3 +38,6 @@ urlpatterns = [
     path('reward/', include('api_doc.urls.reward')),
     path('training_systems/', include('api_doc.urls.training_systems')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

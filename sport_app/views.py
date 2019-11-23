@@ -70,3 +70,5 @@ class LoginView(FormView):
 def logout1(request):
     logout(request)
     return render(request, 'index.html', {})
+
+
