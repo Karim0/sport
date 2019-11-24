@@ -1,0 +1,21 @@
+{% extends "common.html" %}
+<body>
+{% block content %}
+    <div>
+    	<div id="Main">
+			<div class="search_field"><input class="search_input" type="text" placeholder="Courses..."><button class="btn"><img src="../../static/img/search.png" style="padding-bottom: 5px;"></button></div>
+			<div class="row">
+				<div">
+				<div>
+					<img src="{{ article.img.url }}" style="width: 100%;">
+					<div>
+							<h4><b>{{ article.name }}</b></h4>
+							<p>{{ article.info }}</p>
+							<button class="btn" style="margin-bottom: 10px;margin-left: 5px; width: 100%;">register</button>
+					</div>
+				</div>
+				</div>
+			</div>
+	</div>
+{% endblock %}
+</body>
