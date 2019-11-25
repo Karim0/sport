@@ -12,54 +12,58 @@
 {% load static %}
 <html>
 <head>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../static/css/mp.css">
-	<title>Main page</title>
+    <title>Main page</title>
 </head>
 <body>
-	<div id="SideNav" class="sidenav">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
-		<a href="#">Main Page</a>
-		<a href="{% url 'sport_app:index'%}">GYM's list</a>
-		<a href="{% url 'sport_app:coachView' %}">Coaches</a>
-		<a href=" /training_systems">Training System</a>
-	</div>
-	<script type="text/javascript">
-		/*Opening the sidenav
-		function openNav() {
-  document.getElementById("SideNav").style.width = "100%";
+<div id="SideNav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
+    <a href="#">Main Page</a>
+    <a href="{% url 'sport_app:index' %}">GYM's list</a>
+    <a href="{% url 'sport_app:coachView' %}">Coaches</a>
+    <a href=" /training_systems">Training System</a>
+</div>
+<script type="text/javascript">
+    /*Opening the sidenav
+    function openNav() {
+document.getElementById("SideNav").style.width = "100%";
 }*/
-function openNav() {
-  document.getElementById("SideNav").style.width = "250px";
-}
+    function openNav() {
+        document.getElementById("SideNav").style.width = "250px";
+    }
 
-/* Close/hide the sidenav 
-function closeNav() {
-  document.getElementById("SideNav").style.width = "0";
-} */
-function closeNav() {
-  document.getElementById("SideNav").style.width = "0";
-  document.getElementById("Main").style.marginLeft = "0";
-  document.body.style.backgroundColor = "white";
-}
-	</script>
-	<div class ="header">
-		<div class="header_content">
-		<div><span style="padding-left:5px;cursor:pointer;color: #f5e218;" onclick="openNav()">&#9776;</span></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div><button class="btn" onclick="login.html">log in</button><button class="btn" style="margin-left: 15px;">sign up</button></div>
-	</div>
-	</div>
-	{% block content%}
-	{% endblock %}
-	<!--Content !-->
-	<div class="footer">
-		<div class="footer_content">
-				<div id="quote"><p>It's not whether you get knocked down; <br>it's whether you get up.</p></div>
-			<div><img src="../../static/img/instagram.png" style="height: 42px;"></div>
-			<div><img src="../../static/img/facebook.png" style="height: 42px;"></div>
-			<div id="footer_email"><a href="#">contact us by: sportnutrition@gmail.com</a></div>
-	</div>
+    /* Close/hide the sidenav
+    function closeNav() {
+      document.getElementById("SideNav").style.width = "0";
+    } */
+    function closeNav() {
+        document.getElementById("SideNav").style.width = "0";
+        document.getElementById("Main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+    }
+</script>
+<div class="header">
+    <div class="header_content">
+        <div><span style="padding-left:5px;cursor:pointer;color: #f5e218;" onclick="openNav()">&#9776;</span></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div>
+            <button class="btn" onclick="login.html">log in</button>
+            <button class="btn" style="margin-left: 15px;">sign up</button>
+        </div>
+    </div>
+</div>
+{% block content %}
+{% endblock %}
+<!--Content !-->
+<div class="footer">
+    <div class="footer_content">
+        <div id="quote"><p>It's not whether you get knocked down; <br>it's whether you get up.</p></div>
+        <div><img src="../../static/img/instagram.png" style="height: 42px;"></div>
+        <div><img src="../../static/img/facebook.png" style="height: 42px;"></div>
+        <div id="footer_email"><a href="#">contact us by: sportnutrition@gmail.com</a></div>
+    </div>
+</div>
