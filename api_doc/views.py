@@ -232,6 +232,24 @@ def getCommentByCoachId(request, pk):
     return Response(serializer.data)
 
 
+@api_view(['POST'])
+@schema(InfoAboutCoachSchema())
+def addInfoAboutCoach(request):
+    """show All Coach"""
+    if request.data:
+        pk = request.data.get("id", 0)
+        item = Coach.objects.filter(id=pk)
+        if len(item) == 0:
+            return Response("Такого тренера нет")
+        item = item[0]
+        item.info += " " + request.data.get('info', '')
+        item.save()
+        serializer = SerializerCoach(item, many=False)
+        return Response(serializer.data)
+
+    return Response("Что то пошло не так")
+
+
 #
 # @api_view(['POST'])
 # # @schema()
@@ -366,7 +384,7 @@ def getAllAchievement(request):
 
 @api_view(['GET'])
 def getAchievementById(request, pk):
-    items = Achievement.objects.get(id=pk)
+    items = Achievement.objects.filter(id=pk)
     serializer = SerializerAchievement(items, many=True)
     return Response(serializer.data)
 
@@ -409,12 +427,13 @@ def getAllReward(request):
 
 @api_view(['GET'])
 def getRewardById(request, pk):
-    items = Reward.objects.get(id=pk)
+    items = Reward.objects.filter(id=pk)
     serializer = SerializerReward(items, many=True)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
+@schema(RewardSchema())
 def addReward(request):
     serializer = SerializerReward(data=request.data)
     if serializer.is_valid():
@@ -424,6 +443,7 @@ def addReward(request):
 
 
 @api_view(['PUT'])
+@schema(RewardSchema())
 def updateReward(request, pk):
     item = Reward.objects.get(id=pk)
     serializer = SerializerReward(item, data=request.data)

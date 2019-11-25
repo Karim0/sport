@@ -1,65 +1,5 @@
-{% load embed_video_tags %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- Fotorama from CDNJS, 19 KB -->
-    <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../../static/css/mp.css">
-    <meta charset="UTF-8">
-    <title>Ewkere</title>
-</head>
-<body>
-    <div id="SideNav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
-        <a href="#">Main Page</a>
-        <a href="{% url 'sport_app:index'%}">GYM's list</a>
-        <a href="{% url 'sport_app:coachView' %}">Coaches</a>
-        <a href=" /training_systems">Training System</a>
-    </div>
-    <script type="text/javascript">
-        /*Opening the sidenav
-        function openNav() {
-  document.getElementById("SideNav").style.width = "100%";
-}*/
-function openNav() {
-  document.getElementById("SideNav").style.width = "250px";
-}
-
-/* Close/hide the sidenav 
-function closeNav() {
-  document.getElementById("SideNav").style.width = "0";
-} */
-function closeNav() {
-  document.getElementById("SideNav").style.width = "0";
-  document.getElementById("Main").style.marginLeft = "0";
-  document.body.style.backgroundColor = "white";
-}
-</script>
-<div class ="header">
-    <div class="header_content">
-        <div><span style="padding-left:5px;cursor:pointer;color: #f5e218;" onclick="openNav()">&#9776;</span></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div><button class="btn" onclick="login.html">log in</button><button class="btn" style="margin-left: 15px;">sign up</button></div>
-    </div>
-</div>
-
+{% extends "common.html "%}
+{% block content%}
 <div id="Main">
     <div class="search_field"><input class="search_input" type="text" placeholder="Courses..."><button class="btn"><img src="../../static/img/search.png" style="padding-bottom: 5px;"></button></div>
     <div class="row">
@@ -82,5 +22,4 @@ function closeNav() {
 {% endfor %}
 </div>
 </div>
-</body>
-</html>
+{% endblock %}
