@@ -11,7 +11,7 @@ from .schema import *
 @api_view(['GET'])
 @schema(RatingSchema())
 def getAllRatings(request):
-    """show All Rating By SportSectionId"""
+    """Возвращает все рейтинги"""
     items = Rating.objects.all()
     serializer = SerializerRating(items, many=True)
     return Response(serializer.data)
@@ -20,7 +20,7 @@ def getAllRatings(request):
 @api_view(['GET'])
 @schema(RatingSchema())
 def getRatingById(request, pk):
-    """show All Rating By SportSectionId"""
+    """Возвращает список рейтингов по id секции"""
     items = Rating.objects.filter(section_id=pk)
     serializer = SerializerRating(items, many=True)
     return Response(serializer.data)
@@ -29,6 +29,7 @@ def getRatingById(request, pk):
 @api_view(['POST'])
 @schema(RatingSchema())
 def addRating(request):
+    """Оценить секцию"""
     serializer = SerializerRating(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -39,6 +40,7 @@ def addRating(request):
 @api_view(['DELETE'])
 @schema(RatingSchema())
 def deleteRating(request, pk):
+    """Отменить свою оценку"""
     item = Rating.objects.get(id=pk)
     item.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -47,6 +49,7 @@ def deleteRating(request, pk):
 @api_view(['PUT'])
 @schema(RatingSchema())
 def updateRating(request, pk):
+    """Изменить свою оценку"""
     item = Rating.objects.get(id=pk)
     serializer = SerializerRating(item, data=request.data)
     if serializer.is_valid():
@@ -59,7 +62,7 @@ def updateRating(request, pk):
 @api_view(['GET'])
 @schema(CommentSchema())
 def getAllComment(request):
-    """show All Comment By SportSectionId"""
+    """Вернуть список коментов"""
     items = Comment.objects
     serializer = SerializerComment(items, many=True)
     return Response(serializer.data)
@@ -68,7 +71,7 @@ def getAllComment(request):
 @api_view(['GET'])
 @schema(CommentSchema())
 def getAllCommentByType(request, typeComment):
-    """show All Comment By SportSectionId"""
+    """Добавить комент по типу"""
     items = Comment.objects.filter(typeComment_id=typeComment)
     serializer = SerializerComment(items, many=True)
     return Response(serializer.data)
@@ -77,7 +80,7 @@ def getAllCommentByType(request, typeComment):
 @api_view(['GET'])
 @schema(CommentSchema())
 def getAllCommentByTypeAndIdCon(request, typeComment, con_id):
-    """show All Comment By SportSectionId"""
+    """Возвращает список комментов по типу и conn_id"""
     items = Comment.objects.filter(typeComment_id=typeComment, conn_id=con_id)
     serializer = SerializerComment(items, many=True)
     return Response(serializer.data)
@@ -86,7 +89,7 @@ def getAllCommentByTypeAndIdCon(request, typeComment, con_id):
 @api_view(['GET'])
 @schema(CommentSchema())
 def getCommentById(request, pk):
-    """show All Comment By Id"""
+    """Вызвращает коммент по id"""
     items = Comment.objects.filter(id=pk)
     serializer = SerializerComment(items, many=True)
     return Response(serializer.data)
@@ -95,6 +98,7 @@ def getCommentById(request, pk):
 @api_view(['POST'])
 @schema(CommentSchema())
 def addComment(request):
+    """Добавть коммент"""
     serializer = SerializerComment(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -105,6 +109,7 @@ def addComment(request):
 @api_view(['DELETE'])
 @schema(CommentSchema())
 def deleteComment(request, pk):
+    """Удалить коммент"""
     item = Comment.objects.get(id=pk)
     item.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -113,6 +118,7 @@ def deleteComment(request, pk):
 @api_view(['PUT'])
 @schema(CommentSchema())
 def updateComment(request, pk):
+    """Изменить коммент"""
     item = Comment.objects.get(id=pk)
     serializer = SerializerComment(item, data=request.data)
     if serializer.is_valid():
@@ -124,8 +130,8 @@ def updateComment(request, pk):
 @api_view(['GET'])
 @schema(CommentSchema())
 def getCommentByCoachId(request, pk):
-    """show All Comment By SportSectionId"""
-    items = Comment.objects.filter(section_id=pk)
+    """Список коментов по id коуча"""
+    items = Comment.objects.filter(conn_id=pk, typeComment__name="Couch")
     serializer = SerializerComment(items, many=True)
     return Response(serializer.data)
 
@@ -133,6 +139,7 @@ def getCommentByCoachId(request, pk):
 @api_view(['POST'])
 @schema(CommentSchema())
 def addCommentToCoach(request):
+    """Написать комент коучу"""
     serializer = SerializerComment(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -143,6 +150,7 @@ def addCommentToCoach(request):
 @api_view(['DELETE'])
 @schema(CommentSchema())
 def deleteCommentToCoach(request, pk):
+    """Удалить комент по id"""
     item = Comment.objects.get(id=pk)
     item.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -151,6 +159,7 @@ def deleteCommentToCoach(request, pk):
 @api_view(['PUT'])
 @schema(CommentSchema())
 def updateCommentToCoach(request, pk):
+    """Изменить комент по id"""
     item = Comment.objects.get(id=pk)
     serializer = SerializerComment(item, data=request.data)
     if serializer.is_valid():
@@ -163,7 +172,7 @@ def updateCommentToCoach(request, pk):
 @api_view(['GET'])
 @schema(LocationSchema())
 def getLocationBySectionId(request, pk):
-    """show All Location By SectionId"""
+    """Изменить комент по id"""
     items = Location.objects.filter(section_id=pk)
     serializer = SerializerLocation(items, many=True)
     return Response(serializer.data)
@@ -172,6 +181,7 @@ def getLocationBySectionId(request, pk):
 @api_view(['POST'])
 @schema(LocationSchema())
 def addLocation(request):
+    """Добавить локацию"""
     serializer = SerializerLocation(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -182,6 +192,7 @@ def addLocation(request):
 @api_view(['DELETE'])
 @schema(LocationSchema())
 def deleteLocation(request, pk):
+    """Удалить локацию"""
     item = Location.objects.get(id=pk)
     item.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -190,6 +201,7 @@ def deleteLocation(request, pk):
 @api_view(['PUT'])
 @schema(LocationSchema())
 def updateLocation(request, pk):
+    """Изменить локацию"""
     item = Location.objects.get(id=pk)
     serializer = SerializerLocation(item, data=request.data)
     if serializer.is_valid():
@@ -199,18 +211,10 @@ def updateLocation(request, pk):
 
 
 # ============== Coach ==============
-@api_view(['GET'])
-def getCommentToCoachById(request, pk):
-    """show All Review By CoachId"""
-    # items = ReviewToCoach.objects.filter(section_id=pk)
-    # serializer = SerializerReviewToCoach(items, many=True)
-    # return Response(serializer.data)
-    pass
-
 
 @api_view(['GET'])
 def getAllCoach(request):
-    """show All Coach"""
+    """Список тренеров"""
     items = Coach.objects.all()
     serializer = SerializerCoach(items, many=True)
     return Response(serializer.data)
@@ -218,7 +222,7 @@ def getAllCoach(request):
 
 @api_view(['GET'])
 def getCoachesBySectionId(request, pk):
-    """show All Coach"""
+    """Возращает тренера по id"""
     items = Coach.objects.filter(location_id=pk)
     serializer = SerializerCoach(items, many=True)
     return Response(serializer.data)
@@ -226,7 +230,7 @@ def getCoachesBySectionId(request, pk):
 
 @api_view(['GET'])
 def getCommentByCoachId(request, pk):
-    """show All Coach"""
+    """Возращает комент по id тренера"""
     items = Comment.objects.filter(conn_id=pk, typeComment__name="Coach")
     serializer = SerializerCoach(items, many=True)
     return Response(serializer.data)
@@ -235,7 +239,7 @@ def getCommentByCoachId(request, pk):
 @api_view(['POST'])
 @schema(InfoAboutCoachSchema())
 def addInfoAboutCoach(request):
-    """show All Coach"""
+    """Добавляет информацию о тренере"""
     if request.data:
         pk = request.data.get("id", 0)
         item = Coach.objects.filter(id=pk)
@@ -283,7 +287,26 @@ def updateCoach(request, pk):
 @api_view(['GET'])
 @schema(SportSectionSchema())
 def getSportSectionById(request, pk):
+    """Возвращает спортивную секцию по id"""
     items = SportSection.objects.filter(id=pk)
+    serializer = SerializerSportSection(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@schema(SportSectionSchema())
+def getSportSectionType(request):
+    """Возвращает список типов спортивных секций"""
+    items = SportSectionType.objects.all()
+    serializer = SerializerSportSectionType(items, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@schema(SportSectionSchema())
+def getSportSectionByTypeId(request, pk):
+    """Возвращает список спортивных секций по id типа"""
+    items = SportSection.objects.filter(type_id=pk)
     serializer = SerializerSportSection(items, many=True)
     return Response(serializer.data)
 
@@ -308,7 +331,7 @@ def updateSportSection(request, pk):
 
 @api_view(['GET'])
 def getAllSportSection(request):
-    """show All Sport Sections"""
+    """Возвращает список спортивных секций"""
     items = SportSection.objects.all()
     serializer = SerializerSportSection(items, many=True)
     return Response(serializer.data)
@@ -317,7 +340,7 @@ def getAllSportSection(request):
 # ============== TrainingSystems ==============
 @api_view(['GET'])
 def getAllTrainingSystems(request):
-    """Show all Training system"""
+    """Возвращает список систем тренеровок"""
     items = TrainingSystem.objects.all()
     serializer = SerializerTrainingSystem(items, many=True)
     return Response(serializer.data)
@@ -325,7 +348,7 @@ def getAllTrainingSystems(request):
 
 @api_view(['GET'])
 def getTrainingSystemsById(request, pk):
-    """Show training system By Id"""
+    """Возвращает систему тренервки id"""
     items = TrainingSystem.objects.filter(id=pk)
     serializer = SerializerTrainingSystem(items, many=True)
     return Response(serializer.data)
@@ -334,6 +357,7 @@ def getTrainingSystemsById(request, pk):
 # ============== Food ==============
 @api_view(['GET'])
 def getAllFood(request):
+    """Возвращает список спортивного питания"""
     items = Food.objects.all()
     serializer = SerializerFood(items, many=True)
     return Response(serializer.data)
@@ -341,6 +365,7 @@ def getAllFood(request):
 
 @api_view(['GET'])
 def getFoodById(request, pk):
+    """Возвращает спортивное питание по id"""
     items = Food.objects.filter(id=pk)
     serializer = SerializerFood(items, many=True)
     return Response(serializer.data)
@@ -349,6 +374,7 @@ def getFoodById(request, pk):
 @api_view(['POST'])
 @schema(CommentSchema())
 def addCommentFood(request):
+    """Добавляет коммент к спортивному питанию"""
     serializer = SerializerComment(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -359,6 +385,7 @@ def addCommentFood(request):
 @api_view(['PUT'])
 @schema(CommentSchema())
 def updateCommentFood(request, pk):
+    """Изменяет коммент к спортивному питанию по id комента"""
     item = Comment.objects.get(id=pk)
     serializer = SerializerComment(item, data=request.data)
     if serializer.is_valid():
@@ -369,6 +396,7 @@ def updateCommentFood(request, pk):
 
 @api_view(['DELETE'])
 def deleteCommentFood(request, pk):
+    """Удалить коммент к спортивному питанию по id комента"""
     item = Comment.objects.get(id=pk)
     item.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -466,6 +494,14 @@ def buyGymMembership(request):
 
 
 def authUser(request):
+    if request.method is "post":
+        users = User.objects.all()
+        login = request.body.__getitem__("login")
+        password = request.body.__getitem__("password")
+        for i in users:
+            if i.password is password:
+                pass
+
     pass
 
 

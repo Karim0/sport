@@ -1,10 +1,15 @@
 from rest_framework import serializers
 from sport_app.models import *
 
-
 class SerializerSportSection(serializers.ModelSerializer):
     class Meta:
         model = SportSection
+        fields = '__all__'
+
+
+class SerializerSportSectionType(serializers.ModelSerializer):
+    class Meta:
+        model = SportSectionType
         fields = '__all__'
 
 
