@@ -493,16 +493,17 @@ def buyGymMembership(request):
     pass
 
 
+@api_view(['POST'])
 def authUser(request):
-    if request.method is "post":
+    if request.method == "POST":
         users = User.objects.all()
-        login = request.body.__getitem__("login")
-        password = request.body.__getitem__("password")
+        login = request.POST.get("login")
+        password = request.POST.get("password")
         for i in users:
-            if i.password is password:
-                pass
+            if i.password == password and i.username == login:
+                return Response("Success")
 
-    pass
+    return Response("Fail")
 
 
 def addOrdeFoodDelivery(request):
