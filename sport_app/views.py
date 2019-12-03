@@ -15,7 +15,7 @@ def index(request):
 
 def detail(request, article_id):
     try:
-        a = SportSection.objects.get(id = article_id)
+        a = SportSection.objects.get(id=article_id)
     except:
         raise Http404('The article is not found')
 
@@ -29,12 +29,12 @@ def trainingSystemView(request):
 
 def coachView(request):
     o = get_list_or_404(Coach.objects)
-    return render(request, 'coach.html', {"coach": o})   # создай страницу coaches.html
+    return render(request, 'coach.html', {"coach": o})  # создай страницу coaches.html
 
 
 def detail(request, article_id):
     try:
-        a = SportSection.objects.get(id = article_id)
+        a = SportSection.objects.get(id=article_id)
     except:
         raise Http404('The article is not found')
 
@@ -45,12 +45,12 @@ def search(request):
     try:
         if request.method == "POST":
             search_request = request.POST.get("search_field")
-            if len(search_request)>0:
-                search_res = SportSection.objects.filter(name__contains=search_request) + SportSection.objects.filter(info__contains=search_request)
-            return render(request, "sport_app/index.html", {"search_res":search_res, "empty_res":"No resuslts"})
+            if len(search_request) > 0:
+                search_res = SportSection.objects.filter(name__contains=search_request) + SportSection.objects.filter(
+                    info__contains=search_request)
+            return render(request, "sport_app/index.html", {"search_res": search_res, "empty_res": "No resuslts"})
     except:
-        return render(request, "sport_app/index.html", {"empty_res":"No results"})
-
+        return render(request, "sport_app/index.html", {"empty_res": "No results"})
 
 
 def trainingSystemView(request):
@@ -60,7 +60,7 @@ def trainingSystemView(request):
 
 def coachView(request):
     o = get_list_or_404(Coach.objects)
-    return render(request, 'coach.html', {"coach": o})   # создай страницу coaches.html
+    return render(request, 'coach.html', {"coach": o})  # создай страницу coaches.html
 
 
 def test(request):
@@ -107,3 +107,7 @@ class LoginView(FormView):
 def logout1(request):
     logout(request)
     return render(request, 'index.html', {})
+
+
+def mainpage(request):
+    return render(request, 'mainpage.html', {})

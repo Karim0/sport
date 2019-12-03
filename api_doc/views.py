@@ -506,5 +506,5 @@ def authUser(request):
     return Response("Fail")
 
 
-def addOrdeFoodDelivery(request):
+def addOrderFoodDelivery(request):
     pass

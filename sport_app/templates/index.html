@@ -6,10 +6,10 @@
 				{% for i in sport_section %}
 				<div class="col-3">
 				<div class="MyCard">
-					<img src="{{ i.img.url }}" style="width: 100%;">
+					<img src="{{ i.img.url }}" style="width: 100%; max-height: 150px">
 					<div class="card_container">
 							<h4><b><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></b></h4>
-							<p>{{ i.info }}</p>
+							<p style="">{{ i.info }}</p>
 							<button class="btn" style="margin-bottom: 10px;margin-left: 5px; width: 100%;">register</button>
 					</div>
 				</div>
