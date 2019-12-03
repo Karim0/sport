@@ -38,6 +38,7 @@ urlpatterns = [
     path('reward/', include('api_doc.urls.reward')),
     path('training_systems/', include('api_doc.urls.training_systems')),
     path('usr/', include('api_doc.urls.user')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

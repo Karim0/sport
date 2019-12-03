@@ -6,7 +6,7 @@
                 {% for i in coach %}
                 <div class="col-3">
                 <div class="MyCard">
-                    <img src="../static/img/{{ i.img.name }}" style="width: 100%;">
+                    <img src="{{ i.img.url }} " style="width: 100%; max-height: 300px">
                     <div class="card_container">
                             <h4><b><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></b></h4>
                             <p>{{ i.info }}</p>
