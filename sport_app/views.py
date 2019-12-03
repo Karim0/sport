@@ -5,6 +5,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
 from .models import SportSection, Coach, TrainingSystem, Location
 from django.http import Http404, HttpResponseRedirect
+from django.db.models import Q
 
 
 def index(request):
@@ -46,10 +47,10 @@ def search(request):
         if request.method == "POST":
             search_request = request.POST.get("search_field")
             if len(search_request)>0:
-                search_res = SportSection.objects.filter(name__contains=search_request) + SportSection.objects.filter(info__contains=search_request)
-            return render(request, "sport_app/index.html", {"search_res":search_res, "empty_res":"No resuslts"})
+                search_res = SportSection.objects.filter(Q(info__contains=search_request) | Q(name__contains=search_request))
+            return render(request, "search.html", {"search_res":search_res, "empty_res":"No resuslts"})
     except:
-        return render(request, "sport_app/index.html", {"empty_res":"No results"})
+        return render(request, "search.html", {"empty_res":"No results"})
 
 
 

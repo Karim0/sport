@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if search_res %}
+        {% for article in search_res %}
+            <ol>
+            <li>
+                <a href="{% url 'sport_app:detail' article.id %}">
+                    <p>{{ article.name }}</p>
+                </a>
+            </li>
+            </ol>
+        {% endfor %}
+        {% else %}
+        {{ empty_res }}
+    {% endif %}
+</body>
+</html>
