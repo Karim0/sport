@@ -20,10 +20,12 @@ from . import views
 app_name = 'sport_app'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('registration/', views.RegistrationView.as_view(), name='registration'),
+    path('test/', views.test, name='test'),
+    # path('logout', views.logout1, name='logout')
+    # path('login', views.LoginView.as_view(), name='login'),
     path('<int:article_id>/', views.detail, name='detail'),
-    path('registration', views.RegistrationView.as_view(), name='registration'),
     path('login', views.LoginView.as_view(), name='login'),
-    path('test', views.test, name='test'),
     path('logout', views.logout1, name='logout'),
     path('coaches', views.coachView, name='coachView'),
     path('training_systems', views.trainingSystemView, name='systems')

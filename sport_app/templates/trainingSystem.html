@@ -1,19 +1,25 @@
-{% load embed_video_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Ewkere</title>
-</head>
-<body>
-    {% for i in system %}
-        <h1>{{ i.name }}</h1>
-        <p>{{ i.info }}</p>
-        {% if system.video %}
-        <iframe width="560" height="315" src="{{ system.video}}"
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media;
-                gyroscope; picture-in-picture" allowfullscreen></iframe>
-        {% endif %}
-    {% endfor %}
-</body>
-</html>
+{% extends "common.html "%}
+{% block content%}
+<div id="Main">
+    <div class="search_field"><input class="search_input" type="text" placeholder="Courses..."><button class="btn"><img src="../../static/img/search.png" style="padding-bottom: 5px;"></button></div>
+    <div class="row">
+       {% for i in system %}
+       <div class="col-3">
+        <div class="MyCard">
+            <div class="fotorama">
+                <a href="https://www.youtube.com/watch?v=hgIUf6syLAo">
+              </a>
+          </div>
+          <div class="card_container">
+            <h4><b><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></b></h4>
+            <p>{{ i.info }}</p>
+            <button class="btn" style="margin-bottom: 10px;margin-left: 5px; width: 100%;">view more
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+</div>
+</div>
+{% endblock %}

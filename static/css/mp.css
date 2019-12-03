@@ -1,0 +1,173 @@
+.sidenav{
+	height: 100%;
+	width:0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: 0.5s;
+	text-align: center;
+}
+.sidenav a{
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+.sidenav a:hover{
+	color: #f1f1f1;
+
+}
+.sidenav .closebtn{
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+.header{
+	color: #818181;
+	background-color: #111;
+	overflow: hidden;
+	height: 60px;
+	width: 100%;
+	font-size: 30px;
+}
+.header_content{
+	white-space: nowrap;
+}
+.header_content div{
+	width: 20%;
+	display: inline-block;
+	margin-right: 0px;
+}
+.btn{
+	height: 35px;
+	cursor: pointer;
+	border:0;
+	outline: 0;
+	font-size: 18px;
+	text-transform: uppercase;
+	font-weight: bold;
+	box-shadow: 0px 4px 4px rgba(0,0,0,0.2);
+	color: white;
+	background-image: linear-gradient(100deg,white 50%,#f5e218 50%);
+	background-position: 100%;
+	background-size: 250%;
+	transition: background 0.5s ease-in,color 0.5s ease-in;
+}
+.btn:hover{
+	color: #f5e218;
+	background-position: 0;
+}
+#Main{
+	margin-top: 10px;
+	height: 80%;
+	width: 95%;
+}
+.search_field{
+	margin-left: 10px;
+	border-radius: 5px;
+	background-color: #e9e9e9;
+	height: 50px;
+	width: 90%;
+}
+.search_input{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-radius: 2px;
+	border:none;
+}
+.card_container a{
+	padding: 2px 16px;
+	color: #111;
+	text-decoration: none;
+}
+.card_container p{
+	padding-left: 4px;
+}
+.MyCard{
+	flex-basis: 300px;
+	margin-top: 10px;
+	margin-left: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+.MyCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+
+.footer{
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background-color: #111;
+}
+.footer_content{
+	color: black;
+	padding: 5px 5px 5px 5px;
+}
+.footer_content div{
+	margin: 0px 5px 5px 0px;
+	display: inline-block;
+	width: 3%
+}
+#footer_email{
+	width: 83%;
+	text-align: center;
+}
+#footer_email a{
+	font-family: sans-serif;
+	text-decoration: none;
+	color: #818181;
+}
+#quote p{
+	padding-top: 10px;
+	font-family: Helvetica;
+}
+#quote{
+	border-radius: 3px;
+	margin-top: 10px;
+	background-color: #e1e3e1;
+	text-align: center;
+	width: 100%;
+	display: block;
+}
+#quote div{
+	display: inline-block;
+	width: 30%;
+}
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #f5e218;
+  border-color: #f5e218 transparent #f5e218 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

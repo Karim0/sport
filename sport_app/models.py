@@ -1,36 +1,34 @@
 from django.db import models
 from django.contrib.auth.models import User
-from embed_video.fields import EmbedVideoField
 
 
 # Create your models here.
-class TrainingSystem(models.Model):
-    name = models.TextField()
-    info = models.TextField()
-    video = models.TextField()
-
-    def __str__(self):
-        return "name = {0}, info = {1}".format(self.name, self.info)
-
 
 class Coach(models.Model):
     name = models.TextField()
     info = models.TextField()
-    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/static/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}".format(self.name, self.info)
 
 
-class ReviewToCoach(models.Model):
-    coach_id = models.ForeignKey(Coach, on_delete=models.CASCADE)
-    review_text = models.TextField()
+class TrainingSystem(models.Model):
+    name = models.TextField()
+    info = models.TextField()
+    aim = models.TextField(null=True)
+    time = models.TextField(null=True)
+    cycle_duration = models.TextField(null=True)
+    workouts_per_week = models.IntegerField(null=True)
+    video = models.TextField(null=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
-        return "coach_id = {0}, review_text = {1}".format(self.coach_id, self.review_text)
+        return "name = {0}, info = {1}".format(self.name, self.info)
 
 
 class SportSectionType(models.Model):
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
     description = models.TextField(max_length=56)
 
     def __str__(self):
@@ -42,10 +40,14 @@ class SportSection(models.Model):
     name = models.TextField()
     info = models.TextField()
     price = models.IntegerField()
-    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/static/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}, price = {2}".format(self.name, self.info, self.price)
+
+
+class OrderMemberShip(models.Model):
+    section_id = models.ForeignKey(SportSection, on_delete=models.CASCADE)
 
 
 class Location(models.Model):
@@ -67,9 +69,46 @@ class Rating(models.Model):
         return "user_id = {0}, section_id = {1}, rating = {2}".format(self.user_id, self.section_id, self.rating)
 
 
-class Review(models.Model):
-    section_id = models.ForeignKey(SportSection, on_delete=models.CASCADE)
-    review = models.TextField()
+class TypeComment(models.Model):
+    name = models.TextField()
 
     def __str__(self):
-        return "section_id = {0}, review = {1}".format(self.section_id_id, self.review)
+        return "name = {0}".format(self.name)
+
+
+class Comment(models.Model):
+    conn_id = models.IntegerField()
+    comment = models.TextField()
+    typeComment = models.ForeignKey(TypeComment, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "section_id = {0}, review = {1}".format(self.conn_id, self.comment)
+
+
+class Food(models.Model):
+    name = models.TextField()
+    desc = models.TextField()
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+
+    def __str__(self):
+        return "name = {0}, description = {1}".format(self.name, self.desc)
+
+
+class OrderFood(models.Model):
+    food_id = models.ForeignKey(Food, on_delete=models.CASCADE)
+
+
+class Achievement(models.Model):
+    name = models.TextField()
+    desc = models.TextField()
+
+    def __str__(self):
+        return "name = {0}, description = {1}".format(self.name, self.desc)
+
+
+class Reward(models.Model):
+    name = models.TextField()
+    desc = models.TextField()
+
+    def __str__(self):
+        return "name = {0}, description = {1}".format(self.name, self.desc)

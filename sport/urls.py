@@ -15,8 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_swagger.views import get_swagger_view
+from django.conf import settings
+from django.conf.urls.static import static
+
+schema_view = get_swagger_view(title='API DOCUMENTATION')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('docs/', schema_view),
     path('', include('sport_app.urls')),
+    path('accounts/', include('rest_framework.urls')),
+
+    #     Api doc
+    path('sport_section/', include('api_doc.urls.sport_section')),
+    path('comment/', include('api_doc.urls.comment')),
+    path('raiting/', include('api_doc.urls.raiting')),
+    path('location/', include('api_doc.urls.location')),
+    path('coach/', include('api_doc.urls.coach')),
+    path('food/', include('api_doc.urls.food')),
+    path('achievement/', include('api_doc.urls.achievement')),
+    path('reward/', include('api_doc.urls.reward')),
+    path('training_systems/', include('api_doc.urls.training_systems')),
+    path('usr/', include('api_doc.urls.user')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
