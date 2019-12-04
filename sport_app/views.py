@@ -8,7 +8,9 @@ from django.http import Http404, HttpResponseRedirect
 
 
 def index(request):
-    o = get_list_or_404(SportSection.objects)
+    o = SportSection.objects.all()
+    for i in o:
+        i.info = i.info[0:250]
 
     return render(request, 'index.html', {"sport_section": o})
 
@@ -23,44 +25,30 @@ def detail(request, article_id):
 
 
 def trainingSystemView(request):
-    o = get_list_or_404(TrainingSystem.objects)
+    o = TrainingSystem.objects.all()
+    for i in o:
+        i.info = i.info[0:250]
     return render(request, 'trainingSystem.html', {"system": o})
 
 
 def coachView(request):
-    o = get_list_or_404(Coach.objects)
+    o = Coach.objects.all()
+    for i in o:
+        i.info = i.info[0:250]
     return render(request, 'coach.html', {"coach": o})  # создай страницу coaches.html
 
 
-def detail(request, article_id):
-    try:
-        a = SportSection.objects.get(id=article_id)
-    except:
-        raise Http404('The article is not found')
-
-    return render(request, 'detail.html', {'article': a})
-
-
 def search(request):
+    global search_res
     try:
         if request.method == "POST":
             search_request = request.POST.get("search_field")
             if len(search_request) > 0:
                 search_res = SportSection.objects.filter(name__contains=search_request) + SportSection.objects.filter(
                     info__contains=search_request)
-            return render(request, "sport_app/index.html", {"search_res": search_res, "empty_res": "No resuslts"})
+            return render(request, "index.html", {"search_res": search_res, "empty_res": "No resuslts"})
     except:
-        return render(request, "sport_app/index.html", {"empty_res": "No results"})
-
-
-def trainingSystemView(request):
-    o = get_list_or_404(TrainingSystem.objects)
-    return render(request, 'trainingSystem.html', {"system": o})
-
-
-def coachView(request):
-    o = get_list_or_404(Coach.objects)
-    return render(request, 'coach.html', {"coach": o})  # создай страницу coaches.html
+        return render(request, "index.html", {"empty_res": "No results"})
 
 
 def test(request):

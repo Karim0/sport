@@ -9,15 +9,15 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-{% load static %}
 <html>
 <head>
+    {% load static %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../../static/css/mp.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mp.css' %}">
     <title>Main page</title>
 </head>
 <body>
@@ -60,7 +60,8 @@ document.getElementById("SideNav").style.width = "100%";
             <div>
                 <form class="form-inline">
                     <h4>Hi {{ user.username }}!</h4>
-                    <a class="btn btn-outline-success mr-sm-3 ml-sm-3" href="{% url 'logout' %}" role="button" style="margin-left: 30px;">Log
+                    <a class="btn btn-outline-success mr-sm-3 ml-sm-3" href="{% url 'logout' %}" role="button"
+                       style="margin-left: 30px;">Log
                         out</a>
                 </form>
             </div>
