@@ -7,6 +7,9 @@ from .models import *
 from django.http import Http404, HttpResponseRedirect
 from django.db.models import Q
 
+# def registerMemberShip(request, section_id):
+#     render()
+
 
 def addComment(request, article_id):
     print(13)
@@ -16,7 +19,8 @@ def addComment(request, article_id):
         comment.comment = txt
         comment.conn_id = article_id
         comment.typeComment = TypeComment.objects.get(id=0)
-        comment.user = User.objects.get(id=2)
+        current_user = request.user
+        comment.user = current_user
         comment.save()
         return render(request, "detail.html", {"article": SportSection.objects.get(id=article_id)})
     except:
@@ -51,7 +55,7 @@ def detail(request, article_id):
     print(comments)
 
     if request.method == 'POST':
-        print("13")
+        print("ewkere")
         try:
             txt = request.POST.get("comments_text")
             print(request.POST)
