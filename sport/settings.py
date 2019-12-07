@@ -23,7 +23,7 @@ SECRET_KEY = '47$9%-+u_-&^o)r8q!f^+x1%s%r%(p7rz!&zi^xat_9utm(qh+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ALLOWED_HOSTS = ["*"]
 
 # Application definition
@@ -31,15 +31,14 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 INSTALLED_APPS = [
-    'embed_video',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sport_app',
-    'api_doc',
+    'sport_app.apps.SportAppConfig',
+    'api_doc.apps.ApiDocConfig',
     'rest_framework_swagger',
     'rest_framework'
 ]

@@ -18,12 +18,13 @@ from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.documentation import include_docs_urls
 
 schema_view = get_swagger_view(title='API DOCUMENTATION')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('docs/', schema_view),
+    path('docs/', include_docs_urls(title='DOCUMENTATION FOR SPORT APPLICATION')),
     path('', include('sport_app.urls')),
     path('accounts/', include('rest_framework.urls')),
 
@@ -41,5 +42,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

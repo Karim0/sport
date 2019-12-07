@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from sport_app.models import *
 
+
 class SerializerSportSection(serializers.ModelSerializer):
     class Meta:
         model = SportSection
@@ -66,6 +67,11 @@ class SerializerReward(serializers.ModelSerializer):
         model = Reward
         fields = '__all__'
 
+
+class SerializerOrder(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
 #
 # class SerializerReviewToCoach(serializers.ModelSerializer):
 #     class Meta:

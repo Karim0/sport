@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view, schema
+from rest_framework.decorators import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, authentication, permissions, viewsets
@@ -412,6 +413,7 @@ def getAllAchievement(request):
 
 @api_view(['GET'])
 def getAchievementById(request, pk):
+    """Добавить достижение"""
     items = Achievement.objects.filter(id=pk)
     serializer = SerializerAchievement(items, many=True)
     return Response(serializer.data)
@@ -420,6 +422,7 @@ def getAchievementById(request, pk):
 @api_view(['POST'])
 @schema(FoodSchema())
 def addAchievement(request):
+    """Добавить достижение"""
     serializer = SerializerAchievement(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -488,9 +491,14 @@ def deleteReward(request, pk):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
+@schema(OrderSchema())
 def buyGymMembership(request):
-    pass
+    serializer = SerializerOrder(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
@@ -506,5 +514,11 @@ def authUser(request):
     return Response("Fail")
 
 
+@api_view(['POST'])
+@schema(OrderSchema())
 def addOrderFoodDelivery(request):
-    pass
+    serializer = SerializerOrder(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

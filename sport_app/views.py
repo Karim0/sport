@@ -1,5 +1,4 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
 from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 from django.views.generic.edit import FormView
@@ -39,7 +38,9 @@ def showComment(request, article_id):
 
 
 def index(request):
-    o = get_list_or_404(SportSection.objects)
+    o = SportSection.objects.all()
+    for i in o:
+        i.info = i.info[0:250]
 
     return render(request, 'index.html', {"sport_section": o})
 
@@ -76,15 +77,17 @@ def showComments(request, article_id):
 
 
 def trainingSystemView(request):
-    o = get_list_or_404(TrainingSystem.objects)
+    o = TrainingSystem.objects.all()
+    for i in o:
+        i.info = i.info[0:250]
     return render(request, 'trainingSystem.html', {"system": o})
 
 
 def coachView(request):
-    o = get_list_or_404(Coach.objects)
+    o = Coach.objects.all()
+    for i in o:
+        i.info = i.info[0:250]
     return render(request, 'coach.html', {"coach": o})  # создай страницу coaches.html
-
-
 
 def search(request):
     try:
@@ -96,16 +99,6 @@ def search(request):
         return render(request, "search.html", {"search_res": search_res, "empty_res": "No resuslts"})
     except:
         return render(request, "search.html", {"empty_res": "No results"})
-
-
-def trainingSystemView(request):
-    o = get_list_or_404(TrainingSystem.objects)
-    return render(request, 'trainingSystem.html', {"system": o})
-
-
-def coachView(request):
-    o = get_list_or_404(Coach.objects)
-    return render(request, 'coach.html', {"coach": o})  # создай страницу coaches.html
 
 
 def test(request):
