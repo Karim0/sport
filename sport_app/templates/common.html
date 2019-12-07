@@ -26,9 +26,9 @@
     <a href="{% url 'sport_app:mainpage' %}">Main Page</a>
     <a href="{% url 'sport_app:index' %}">GYM's list</a>
     <a href="{% url 'sport_app:coachView' %}">Coaches</a>
-    <a href=" /training_systems">Training System</a>
+    <a href=" {% url 'sport_app:systems' %}">Training System</a>
     <a href=""><br></a>
-    <div class="lds-dual-ring"></div>
+{#    <div class="lds-dual-ring"></div>#}
 
 </div>
 <script type="text/javascript">
@@ -74,7 +74,16 @@ document.getElementById("SideNav").style.width = "100%";
 
     </div>
 </div>
-
+<form action="{% url 'sport_app:search' %}" method="post">
+    <div class="form-group">
+        {% csrf_token %}
+        <div class="search_field">
+            <input class="search_input" name="search_field" type="text" placeholder="Courses...">
+            <button class="btn"><img src="{% static "img/search.png" %}" style="padding-bottom: 5px;" alt="img">
+            </button>
+        </div>
+    </div>
+</form>
 {% block content %}
 {% endblock %}
 <!--Content !-->
