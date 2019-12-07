@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 
 # Create your models here.
@@ -21,14 +21,14 @@ class TrainingSystem(models.Model):
     cycle_duration = models.TextField(null=True)
     workouts_per_week = models.IntegerField(null=True)
     video = models.TextField(null=True)
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}".format(self.name, self.info)
 
 
 class SportSectionType(models.Model):
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
     description = models.TextField(max_length=56)
 
     def __str__(self):
@@ -77,6 +77,7 @@ class TypeComment(models.Model):
 
 
 class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     conn_id = models.IntegerField()
     comment = models.TextField()
     typeComment = models.ForeignKey(TypeComment, on_delete=models.CASCADE)
@@ -88,7 +89,7 @@ class Comment(models.Model):
 class Food(models.Model):
     name = models.TextField()
     desc = models.TextField()
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
         return "name = {0}, description = {1}".format(self.name, self.desc)
