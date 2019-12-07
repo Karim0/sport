@@ -28,7 +28,7 @@
     <a href="{% url 'sport_app:coachView' %}">Coaches</a>
     <a href=" {% url 'sport_app:systems' %}">Training System</a>
     <a href=""><br></a>
-{#    <div class="lds-dual-ring"></div>#}
+    {#    <div class="lds-dual-ring"></div>#}
 
 </div>
 <script type="text/javascript">
@@ -98,3 +98,27 @@ document.getElementById("SideNav").style.width = "100%";
         <div><img src="{% static 'img/facebook.png' %}" style="height: 42px;"></div>
         <div id="footer_email"><a href="#">contact us by: sportnutrition@gmail.com</a></div>
     </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Get a membership</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                PRIVET KARIM HOCHEW ZARAGATSYA?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
