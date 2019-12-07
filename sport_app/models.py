@@ -80,7 +80,7 @@ class Comment(models.Model):
     conn_id = models.IntegerField()
     comment = models.TextField()
     typeComment = models.ForeignKey(TypeComment, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return "section_id = {0}, review = {1}".format(self.conn_id, self.comment)
@@ -113,3 +113,11 @@ class Reward(models.Model):
 
     def __str__(self):
         return "name = {0}, description = {1}".format(self.name, self.desc)
+
+
+class Order(models.Model):
+    name = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

@@ -125,3 +125,16 @@ class InfoAboutCoachSchema(AutoSchema):
 
             manual_fields = super().get_manual_fields(path, method)
             return manual_fields + extra_fields
+
+
+class OrderSchema(AutoSchema):
+    def get_manual_fields(self, path, method):
+        extra_fields = []
+        if method.lower() in ["post", "put"]:
+            extra_fields = [
+                coreapi.Field('user', type='integer', description='id'),
+                coreapi.Field('name', type='string', description='name'),
+            ]
+
+            manual_fields = super().get_manual_fields(path, method)
+            return manual_fields + extra_fields
