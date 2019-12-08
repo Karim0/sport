@@ -5,9 +5,9 @@
                 {% for i in coach %}
                 <div class="col-3">
                 <div class="MyCard">
-                    <img src="{{ i.img.url }} " style="width: 100%; max-height: 300px">
+                    <a href="{% url 'sport_app:detail_coach' i.id %}"><img src="{{ i.img.url }} " style="width: 100%; max-height: 300px"></a>
                     <div class="card_container">
-                            <h4><b><a href="{% url 'sport_app:detail' i.id %}">{{ i.name }}</a></b></h4>
+                            <h4><b><a href="{% url 'sport_app:detail_coach' i.id %}">{{ i.name }}</a></b></h4>
                             <p>{{ i.info }}</p>
                             <p>Rating : 5</p>
                             <button class="btn mybtn" id="myBtn">contact</button>

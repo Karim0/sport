@@ -30,4 +30,5 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('mainpage', views.mainpage, name='mainpage'),
     path('<int:article_id>/comment', views.addComment, name='addComment'),
+    path('coach/<int:coach_id>/', views.detail_coach, name='detail_coach'),
 ]

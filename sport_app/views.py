@@ -10,6 +10,24 @@ from django.db.models import Q
 # def registerMemberShip(request, section_id):
 #     render()
 
+def detail_coach(request, coach_id):
+    try:
+        a = Coach.objects.get(id=coach_id)
+    except:
+        raise Http404('The article is not found')
+    comments = Comment.objects.filter(conn_id=coach_id)
+
+    if request.method == 'POST':
+        try:
+            txt = request.POST.get("comments_text")
+            print(request.POST)
+            comment = Comment(comment=txt, conn_id=Coach.objects.get(pk=coach_id),
+                              user=User.objects.get(username=request.POST["username"]))
+            comment.save()
+        except:
+            print('the comments cannot be added')
+    return render(request, "detail_coach.html", {"coach": a, "comments": comments})
+
 
 def addComment(request, article_id):
     print(13)
