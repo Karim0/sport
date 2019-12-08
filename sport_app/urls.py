@@ -33,4 +33,5 @@ urlpatterns = [
     path('<int:article_id>/comment', views.addComment, name='addComment'),
     path('food', views.food, name='food'),
     path('food/<int:pk>', views.detail_food, name='detail_food'),
+    path('coach/<int:coach_id>/', views.detail_coach, name='detail_coach'),
 ]
