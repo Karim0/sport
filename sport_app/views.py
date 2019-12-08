@@ -31,7 +31,6 @@ def detail_coach(request, coach_id):
 
 
 def addComment(request, article_id):
-    print(13)
     try:
         txt = request.POST.get("comments_text")
         comment = Comment()
@@ -41,7 +40,8 @@ def addComment(request, article_id):
         current_user = request.user
         comment.user = current_user
         comment.save()
-        return render(request, "detail.html", {"article": SportSection.objects.get(id=article_id)})
+        comments = Comment.objects.filter(conn_id=article_id)
+        return render(request, "detail.html", {"article": SportSection.objects.get(id=article_id), "comments": comments})
     except:
         return HttpResponse("No such articles")
 

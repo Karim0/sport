@@ -132,8 +132,8 @@ class OrderSchema(AutoSchema):
         extra_fields = []
         if method.lower() in ["post", "put"]:
             extra_fields = [
-                coreapi.Field('user', type='integer', description='id'),
-                coreapi.Field('name', type='string', description='name'),
+                coreapi.Field('user', type='integer', description='id', example=2),
+                coreapi.Field('name', type='string', description='name', example="Покупка чего то"),
             ]
 
             manual_fields = super().get_manual_fields(path, method)
