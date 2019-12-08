@@ -191,7 +191,7 @@ def mainpage(request):
 def food(request):
     foods = Food.objects.all()
     for i in foods:
-        i.info = i.info[0:250]
+        i.desc = i.desc[0:250]
     return render(request, 'food.html', {"foods": foods})
 
 

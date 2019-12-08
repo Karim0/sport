@@ -1,0 +1,17 @@
+{% extends "common.html" %}
+{% block content %}
+    <div class="w-100">
+        <div class="fotorama"
+             data-allowfullscreen="true"
+             data-fit="cover"
+             data-width="100%"
+             data-ratio="21/9">
+            <img src="{{ food.img.url }}">
+        </div>
+        <div class="p-3">
+            <h4><b>{{ food.name }}</b></h4>
+            <p>{{ food.desc }}</p>
+            {#            <button class="btn">register</button>#}
+        </div>
+    </div>
+{% endblock %}

@@ -51,24 +51,6 @@
                 <p>{{ i }}</p>
                 {% endfor %}
             </div>
-            <h3>Comments: </h3>
-            {% if comments %}
-                {% for comment in comments %}
-                    <p><b>*{{ comment.user.username }}* left this comment</b></p>
-                    <p>{{ comment.comment }}</p>
-                {% endfor %}
-            {% else %}
-                <p>No comments</p>
-            {% endif %}
-            {% if user.is_authenticated %}
-                <form class="" action="comment" method="POST">
-                    {% csrf_token %}
-                    <textarea name="comments_text" rows="8" cols="80" placeholder="Leave your thoughts"></textarea>
-                    <input type="hidden" name="username" value="{{ user.username }}">
-                    <br><input type="submit" name="" value="Submit">
-                </form>
-
-            {% endif %}
         </div>
 
     </div>
