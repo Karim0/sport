@@ -32,7 +32,7 @@
                             </div>
                             <div class="mb-5">
                                 <h3 class="photo_text">Тренировок в неделю: </h3>
-                                <p class="photo_text h4">{{ training_system.workouts_per_week }} дней</p>
+                                <p class="photo_text h4">{{ training_system.workouts_per_week }}</p>
                             </div>
                             <div class="mb-5">
                                 <h3 class="photo_text">Уровень подготовки: </h3>
@@ -46,7 +46,10 @@
         </div>
         <div class="pr-2 pl-2">
             <div>
-                <p>{{ training_system.info }}</p>
+                {% for i in info %}
+
+                <p>{{ i }}</p>
+                {% endfor %}
             </div>
             <h3>Comments: </h3>
             {% if comments %}

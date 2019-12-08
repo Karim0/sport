@@ -78,7 +78,11 @@ def detail_training(request, pk):
     #         comment.save()
     #     except:
     #         print('the comments cannot be added')
-    return render(request, "detail_traning.html", {"training_system": s, "comments": comments})
+
+    info = []
+    for i in s.info.split("\n"):
+        info.append(i)
+    return render(request, "detail_traning.html", {"training_system": s, "comments": comments, "info": info})
 
 
 def showComments(request, article_id):

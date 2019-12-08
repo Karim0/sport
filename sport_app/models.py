@@ -7,7 +7,7 @@ from django.contrib.auth.models import User, AbstractUser
 class Coach(models.Model):
     name = models.TextField()
     info = models.TextField()
-    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}".format(self.name, self.info)
@@ -19,18 +19,18 @@ class TrainingSystem(models.Model):
     aim = models.TextField(null=True)
     time = models.TextField(null=True)
     cycle_duration = models.TextField(null=True)
-    workouts_per_week = models.IntegerField(null=True)
+    workouts_per_week = models.TextField(null=True)
     video = models.TextField(null=True)
     level = models.TextField(null=True)
     location = models.TextField(null=True)
-    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}".format(self.name, self.info)
 
 
 class SportSectionType(models.Model):
-    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
     description = models.TextField(max_length=56)
 
     def __str__(self):
@@ -42,7 +42,7 @@ class SportSection(models.Model):
     name = models.TextField()
     info = models.TextField()
     price = models.IntegerField()
-    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}, price = {2}".format(self.name, self.info, self.price)
@@ -92,7 +92,7 @@ class Comment(models.Model):
 class Food(models.Model):
     name = models.TextField()
     desc = models.TextField()
-    img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):
         return "name = {0}, description = {1}".format(self.name, self.desc)
