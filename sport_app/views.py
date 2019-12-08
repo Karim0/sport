@@ -7,6 +7,7 @@ from .models import *
 from django.http import Http404, HttpResponseRedirect
 from django.db.models import Q
 
+
 # def registerMemberShip(request, section_id):
 #     render()
 
@@ -42,30 +43,42 @@ def index(request):
     for i in o:
         i.info = i.info[0:250]
 
-    return render(request, 'index.html', {"sport_section": o})
+    return render(request, 'sport_section.html', {"sport_section": o})
 
 
 def detail(request, article_id):
     try:
         a = SportSection.objects.get(id=article_id)
-    except:
+    except Exception:
         raise Http404('The article is not found')
     comments = Comment.objects.filter(conn_id=article_id)
-    print("1312312")
-    print(comments)
 
     if request.method == 'POST':
-        print("ewkere")
         try:
             txt = request.POST.get("comments_text")
             print(request.POST)
             comment = Comment(comment=txt, conn_id=SportSection.objects.get(pk=article_id),
                               user=User.objects.get(username=request.POST["username"]))
-            print("14")
             comment.save()
         except:
             print('the comments cannot be added')
     return render(request, "detail.html", {"article": a, "comments": comments})
+
+
+def detail_training(request, pk):
+    s = TrainingSystem.objects.get(id=pk)
+    comments = Comment.objects.filter(conn_id=pk, typeComment__name="TrainingSystem")
+
+    # if request.method == 'POST':
+    #     try:
+    #         txt = request.POST.get("comments_text")
+    #         print(request.POST)
+    #         comment = Comment(comment=txt, conn_id=pk,
+    #                           user=User.objects.get(username=request.POST["username"]))
+    #         comment.save()
+    #     except:
+    #         print('the comments cannot be added')
+    return render(request, "detail_traning.html", {"training_system": s, "comments": comments})
 
 
 def showComments(request, article_id):
@@ -89,7 +102,9 @@ def coachView(request):
         i.info = i.info[0:250]
     return render(request, 'coach.html', {"coach": o})  # создай страницу coaches.html
 
+
 def search(request):
+    search_res = None
     try:
         if request.method == "POST":
             search_request = request.POST.get("search_field")
@@ -144,8 +159,20 @@ class LoginView(FormView):
 
 def logout1(request):
     logout(request)
-    return render(request, 'index.html', {})
+    return render(request, 'sport_section.html', {})
 
 
 def mainpage(request):
-    return render(request, 'mainpage.html', {})
+    return render(request, 'index.html', {})
+
+
+def food(request):
+    foods = Food.objects.all()
+    for i in foods:
+        i.info = i.info[0:250]
+    return render(request, 'food.html', {"foods": foods})
+
+
+def detail_food(request, pk):
+    f = Food.objects.get(id=pk)
+    return render(request, 'detail_food.html', {"food": f})

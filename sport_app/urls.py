@@ -19,15 +19,18 @@ from . import views
 
 app_name = 'sport_app'
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('sport_section', views.index, name='index'),
     path('registration/', views.RegistrationView.as_view(), name='registration'),
     path('test/', views.test, name='test'),
     path('<int:article_id>/', views.detail, name='detail'),
+    path('training_system/<int:pk>', views.detail_training, name='detail_training'),
     path('login', views.LoginView.as_view(), name='login'),
     path('logout', views.logout1, name='logout'),
     path('coaches', views.coachView, name='coachView'),
     path('training_systems', views.trainingSystemView, name='systems'),
     path('search', views.search, name='search'),
-    path('mainpage', views.mainpage, name='mainpage'),
+    path('', views.mainpage, name='mainpage'),
     path('<int:article_id>/comment', views.addComment, name='addComment'),
+    path('food', views.food, name='food'),
+    path('food/<int:pk>', views.detail_food, name='detail_food'),
 ]

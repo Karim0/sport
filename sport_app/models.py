@@ -21,6 +21,8 @@ class TrainingSystem(models.Model):
     cycle_duration = models.TextField(null=True)
     workouts_per_week = models.IntegerField(null=True)
     video = models.TextField(null=True)
+    level = models.TextField(null=True)
+    location = models.TextField(null=True)
     img = models.ImageField(upload_to='C:/Users/minot/PycharmProjects/sport/media/img', blank=True)
 
     def __str__(self):

@@ -1,10 +1,10 @@
 .sidenav {
     height: 100%;
-    width: 0;
+    width: 25%;
     position: fixed;
     z-index: 1000;
     top: 0;
-    left: 0;
+    left: -25%;
     background-color: #111;
     overflow-x: hidden;
     padding-top: 60px;
@@ -43,15 +43,15 @@
     font-size: 30px;
 }
 
-.header_content {
-    white-space: nowrap;
-}
+/*.header_content {*/
+/*    white-space: nowrap;*/
+/*}*/
 
-.header_content div {
-    width: 20%;
-    display: inline-block;
-    margin-right: 0px;
-}
+/*.header_content div {*/
+/*    width: 20%;*/
+/*    display: inline-block;*/
+/*    margin-right: 0px;*/
+/*}*/
 
 .btn {
     height: 35px;
@@ -61,7 +61,7 @@
     font-size: 18px;
     text-transform: uppercase;
     font-weight: bold;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
     color: white;
     background-image: linear-gradient(100deg, white 50%, #f5e218 50%);
     background-position: 100%;
@@ -75,14 +75,10 @@
 }
 
 html {
-    position: relative;
-    min-height: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    padding-bottom: 20%;
+    /*position: relative;*/
+    /*min-height: 100%;*/
+    /*padding: 0;*/
+    /*margin: 0;*/
 }
 
 #Main {
@@ -109,16 +105,19 @@ body {
     border: none;
 }
 
-.card_container{
+.card_container p {
+    /*text-align: justify;*/
+    font-size: 95%;
     padding: 3%;
+    max-height: 300px;
+    word-break: break-all;
+}
+.card_container h4 {
+    text-align: center;
 }
 
-.card_container p{
-     text-align: justify;
-}
-
-.card_container a {
-    padding: 2px 16px;
+.card_container_a {
+    font-size: 100%;
     color: #111;
     text-decoration: none;
 }
@@ -139,8 +138,9 @@ body {
 
 
 .footer {
+    margin-top: 20px;
     /*height: 20%;*/
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
     left: 0;
     bottom: 0;
@@ -150,6 +150,10 @@ body {
 .footer_content {
     color: black;
     padding: 5px 5px 5px 5px;
+}
+
+.footer_content img{
+    width: 42px;
 }
 
 .footer_content div {
@@ -172,12 +176,13 @@ body {
 #quote p {
     padding-top: 10px;
     font-family: Helvetica;
+    color: white;
 }
 
 #quote {
     border-radius: 3px;
     margin-top: 10px;
-    background-color: #e1e3e1;
+    /*background-color: #e1e3e1;*/
     text-align: center;
     width: 100%;
     display: block;
@@ -215,16 +220,124 @@ body {
     }
 }
 
-.mybtn{
+.mybtn {
     margin-bottom: 10px;
-    margin-left: 5px;
     width: 85%;
     align-items: baseline;
     bottom: 0;
     position: absolute;
+    margin-left: 4%;
 }
 
-.col-3{
+.col-3 {
     padding-right: 0;
 }
 
+.color-dark-blue {
+    background-color: rgba(0, 15, 50, 0.40);
+}
+
+.color-gray {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.photo_text {
+    color: white;
+}
+
+.menu_btn {
+    padding-left: 5px;
+    cursor: pointer;
+    color: #f5e218;
+}
+
+
+.my_forms {
+	margin:10px auto;
+	max-width: 400px;
+	padding: 20px 12px 10px 20px;
+	font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.my_forms li {
+	padding: 0;
+	display: block;
+	list-style: none;
+	margin: 10px 0 0 0;
+}
+.my_forms ul {
+	padding: 0;
+}
+.my_forms label{
+	margin:0 0 3px 0;
+	padding:0px;
+	display:block;
+	font-weight: bold;
+}
+.my_forms input[type=text],
+.my_forms input[type=date],
+.my_forms input[type=datetime],
+.my_forms input[type=number],
+.my_forms input[type=search],
+.my_forms input[type=time],
+.my_forms input[type=url],
+.my_forms input[type=email],
+.my_forms textarea,
+select{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border:1px solid #BEBEBE;
+	padding: 7px;
+	margin:0px;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+}
+.my_forms input[type=text]:focus,
+.my_forms input[type=date]:focus,
+.my_forms input[type=datetime]:focus,
+.my_forms input[type=number]:focus,
+.my_forms input[type=search]:focus,
+.my_forms input[type=time]:focus,
+.my_forms input[type=url]:focus,
+.my_forms input[type=email]:focus,
+.my_forms textarea:focus,
+.my_forms select:focus{
+	-moz-box-shadow: 0 0 8px #88D5E9;
+	-webkit-box-shadow: 0 0 8px #88D5E9;
+	box-shadow: 0 0 8px #88D5E9;
+	border: 1px solid #88D5E9;
+}
+.my_forms .field-divided{
+	width: 49%;
+}
+
+.my_forms .field-long{
+	width: 100%;
+}
+.my_forms .field-select{
+	width: 100%;
+}
+.my_forms .field-textarea{
+	height: 100px;
+}
+.my_forms input[type=submit], .form-style-1 input[type=button]{
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+.my_forms input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+	background: #4691A4;
+	box-shadow:none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+}
+.my_forms .required{
+	color:red;
+}
+.my_forms input{
+    width: 100%;
+}
