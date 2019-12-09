@@ -2,14 +2,17 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse
 from django.views.generic.edit import FormView
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
 from .models import *
 from django.http import Http404, HttpResponseRedirect
 from django.db.models import Q
+import os
 
 
-# def registerMemberShip(request, section_id):
-#     render()
+def userdashboardView(request):
+    a = Order.objects.filter(user_id=request.user.id)
+    return render(request, 'cabinet.html', {"orders":a})
 
 def detail_coach(request, coach_id):
     try:
