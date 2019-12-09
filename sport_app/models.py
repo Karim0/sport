@@ -47,11 +47,6 @@ class SportSection(models.Model):
     def __str__(self):
         return "name = {0}, info = {1}, price = {2}".format(self.name, self.info, self.price)
 
-
-class OrderMemberShip(models.Model):
-    section_id = models.ForeignKey(SportSection, on_delete=models.CASCADE)
-
-
 class Location(models.Model):
     location = models.TextField()
     map_location = models.TextField()
@@ -96,11 +91,6 @@ class Food(models.Model):
 
     def __str__(self):
         return "name = {0}, description = {1}".format(self.name, self.desc)
-
-
-class OrderFood(models.Model):
-    food_id = models.ForeignKey(Food, on_delete=models.CASCADE)
-
 
 class Achievement(models.Model):
     name = models.TextField()

@@ -115,6 +115,12 @@ def trainingSystemView(request):
     o = TrainingSystem.objects.all()
     for i in o:
         i.info = i.info[0:250]
+
+    if request.method == 'post':
+        order = Order()
+        order.name = request.POST.get("name")
+        order.user = request.POST.get("user")
+        order.save()
     return render(request, 'trainingSystem.html', {"system": o})
 
 
