@@ -69,7 +69,7 @@ document.getElementById("SideNav").style.width = "100%";
         {% if user.is_authenticated %}
             <div class="col-3">
                 <div class="row pt-2">
-                    <p class="h4 pt-1">Hi {{ user.username }}!</p>
+                    <a href="{% url 'sport_app:dashboard' %}" style="text-decoration: none; color: #818181;"><p class="h4 pt-1">Hi {{ user.username }}!</p></a>
                     <a class="btn ml-3" href="{% url 'logout' %}"> Log out</a>
                 </div>
             </div>

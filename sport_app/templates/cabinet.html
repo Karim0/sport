@@ -1,22 +1,50 @@
 {% extends "common.html" %}
 {% block content %}
-    {% if user %}
-        <p>Name: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Date joined: {{ user.date_joined }}</p>
-        <p>Last time was active: {{ user.last_login }}</p>
-        {% if user.is_superuser %}
-            <p>Role: Admin</p>
+    {% load static %}
+    <div class="container">
+        {% if user %}
+            <div class="row mini_body">
+                <div class="col-4">
+                    <div class="row_elements">
+                        <div class="user_dashboard_element"><p>Name: {{ user.username }}</p></div>
+                        <div class="user_dashboard_element"><p>Email: {{ user.email }}</p></div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="row_elements">
+                        <img src="{% static 'img/avatar.png' %}" style="height: 200px">
+                    </div>
+                </div>
+            </div>
+            <div class="row mini_body">
+                <div class="user_dashboard_element">
+                    <p>Date joined: {{ user.date_joined }}</p>
+                </div>
+                <div class="user_dashboard_element">
+                    <p>Last time was active: {{ user.last_login }}</p>
+                </div>
+                <div class="user_dashboard_element">
+                    {% if user.is_superuser %}
+                        <p>Role: Admin</p>
+                    {% else %}
+                        <p>Role: User</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div>
+
+            <div>
+                <p>Orders:</p>
+                {% for i in orders %}
+                    <div class="user_dashboard_element w-100">
+                        <p>{{ forloop.counter }}) {{ i.name }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
         {% else %}
-            <p>Role: User</p>
-            {% endif %}
-        <p>Orders:</p>
-        <ol>
-        {% for i in orders %}
-        <li>{{ i.name }}</li>
-        {% endfor %}
-        </ol>
-        {% else %}
-        <p>{{ user }}</p>
-    {% endif %}
+            <p>{{ user }}</p>
+        {% endif %}
+        </div>
 {% endblock %}
