@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
+from sport import settings
 
 
 # Create your models here.
@@ -7,7 +8,7 @@ from django.contrib.auth.models import User, AbstractUser
 class Coach(models.Model):
     name = models.TextField()
     info = models.TextField()
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to=settings.MEDIA_ROOT + '/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}".format(self.name, self.info)
@@ -23,14 +24,14 @@ class TrainingSystem(models.Model):
     video = models.TextField(null=True)
     level = models.TextField(null=True)
     location = models.TextField(null=True)
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to=settings.MEDIA_ROOT + '/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}".format(self.name, self.info)
 
 
 class SportSectionType(models.Model):
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to=settings.MEDIA_ROOT + '/img', blank=True)
     description = models.TextField(max_length=56)
 
     def __str__(self):
@@ -42,10 +43,11 @@ class SportSection(models.Model):
     name = models.TextField()
     info = models.TextField()
     price = models.IntegerField()
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to=settings.MEDIA_ROOT + '/img', blank=True)
 
     def __str__(self):
         return "name = {0}, info = {1}, price = {2}".format(self.name, self.info, self.price)
+
 
 class Location(models.Model):
     location = models.TextField()
@@ -87,10 +89,11 @@ class Comment(models.Model):
 class Food(models.Model):
     name = models.TextField()
     desc = models.TextField()
-    img = models.ImageField(upload_to='C:/Users/Karim/PycharmProjects/sport/media/img', blank=True)
+    img = models.ImageField(upload_to=settings.MEDIA_ROOT + '/img', blank=True)
 
     def __str__(self):
         return "name = {0}, description = {1}".format(self.name, self.desc)
+
 
 class Achievement(models.Model):
     name = models.TextField()
